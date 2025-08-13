@@ -8,6 +8,6 @@ __pycache__/
 # Database file
 *.db
 
-# ML models (optional or large files)
+# ML models 
 models/*.pkl
 .venv
