@@ -10,3 +10,4 @@ __pycache__/
 
 # ML models (optional or large files)
 models/*.pkl
+.venv
