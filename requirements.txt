@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+requests
+pandas
+numpy
+scikit-learn
+SQLAlchemy
+pymysql
+python-dotenv
+jinja2
+razorpay
+redis
+loguru

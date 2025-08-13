@@ -1,0 +1,15 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
+DB_URL = os.getenv("DB_URL", "sqlite:///./razor_ai.db")
+SMTP_HOST = os.getenv("SMTP_HOST")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USER = os.getenv("SMTP_USER")
+SMTP_PASS = os.getenv("SMTP_PASS")
+ALERT_FROM = os.getenv("ALERT_FROM")
+ALERT_TO = os.getenv("ALERT_TO")
+ENV = os.getenv("ENV", "dev")
+FAILURE_ALERT_THRESHOLD = float(os.getenv("FAILURE_ALERT_THRESHOLD", "0.75"))
+FRAUD_ALERT_THRESHOLD = float(os.getenv("FRAUD_ALERT_THRESHOLD", "0.8"))

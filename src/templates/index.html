@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Payment Monitor</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:24px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}.card{border:1px solid #ddd;border-radius:10px;padding:16px}h1{margin-top:0}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #eee;padding:8px;text-align:left;font-size:14px}th{background:#f8f8f8}.tag{padding:2px 8px;border-radius:100px;background:#efefef;font-size:12px}</style>
+</head>
+<body>
+<h1>AI-Powered Payment Monitoring</h1>
+<div class="cards">
+  <div class="card"><b>Total Payments</b><div id="total">{{ total }}</div></div>
+  <div class="card"><b>Captured</b><div id="captured">{{ captured }}</div></div>
+  <div class="card"><b>Failed</b><div id="failed">{{ failed }}</div></div>
+  <div class="card"><b>Predictions</b><div id="preds">{{ preds }}</div></div>
+</div>
+<h2>Latest Payments</h2>
+<table id="payments"><thead><tr><th>ID</th><th>Amount</th><th>Currency</th><th>Status</th><th>Method</th></tr></thead><tbody></tbody></table>
+<h2>Latest Predictions</h2>
+<table id="predsTable"><thead><tr><th>Payment</th><th>Failure Prob</th><th>Fraud Score</th><th>Flags</th></tr></thead><tbody></tbody></table>
+<script>
+async function loadPayments(){const r=await fetch('/payments');const data=await r.json();const tbody=document.querySelector('#payments tbody');tbody.innerHTML='';data.forEach(p=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${p.id}</td><td>${(p.amount||0)/100}</td><td>${p.currency||''}</td><td>${p.status||''}</td><td>${p.method||''}</td>`;tbody.appendChild(tr);});}
+async function loadPreds(){const r=await fetch('/predictions');const data=await r.json();const tbody=document.querySelector('#predsTable tbody');tbody.innerHTML='';data.forEach(p=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${p.payment_id}</td><td>${(p.failure_prob||0).toFixed(2)}</td><td>${(p.fraud_score||0).toFixed(2)}</td><td>${p.flags||''}</td>`;tbody.appendChild(tr);});}
+loadPayments();loadPreds();setInterval(()=>{loadPayments();loadPreds();},5000);
+</script>
+</body></html>
