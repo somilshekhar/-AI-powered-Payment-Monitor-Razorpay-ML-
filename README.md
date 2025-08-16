@@ -1,6 +1,6 @@
 # AI-Powered Payment Monitoring System (Razorpay Integration)
 
-A real-world, internship-ready project that combines live payment tracking, payment failure prediction, and fraud detection using Razorpay APIs and pre-trained ML models.
+A real-world project that combines live payment tracking, payment failure prediction, and fraud detection using Razorpay APIs and pre-trained ML models.
 
 ## Quickstart (Local Dev)
 
